@@ -1,0 +1,2 @@
+md3read = Program('md3read', Glob('*.cpp'))
+Return('md3read')

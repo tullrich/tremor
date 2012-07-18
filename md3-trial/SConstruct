@@ -1,1 +1,0 @@
-Program('md3read', Glob('src/*.cpp'))
