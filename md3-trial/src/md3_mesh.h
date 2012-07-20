@@ -5,8 +5,9 @@
 
 class MD3Mesh {
 	public:
-		md3_header* header;
-		md3_frame* frames;
+		md3_header *header;
+		md3_frame *frames;
+		md3_tag *tags;
 };
 
 #endif

@@ -16,5 +16,6 @@ int main(int argc, char *argv[]) {
 
 	printHeader(mesh.header);
 	printFrame(&mesh.frames[0]);
+	printTag(&mesh.tags[0]);
 }
 

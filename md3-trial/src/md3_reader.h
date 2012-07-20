@@ -11,6 +11,7 @@ class MD3Reader {
 		void readMesh(MD3Mesh* mesh);
 		bool readHeader(md3_header* header);
 		bool readFrames(int num_frames, int ofs_frames, md3_frame* frames);
+		bool readTags(int num_tags, int ofs_tags, md3_tag* tags);
 		void close();
 
 	private:

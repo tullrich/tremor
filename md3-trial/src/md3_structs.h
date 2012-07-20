@@ -33,6 +33,13 @@ typedef struct {
 	char name[16];
 } md3_frame;
 
+typedef struct {
+	char name[64];
+	vec3 origin;
+	vec3 axis[3];
+} md3_tag;
+
+
 static void printHeader(md3_header* h) {
 	printf("md3_header {\n");
 	printf("	ident: %i\n", h->ident);
@@ -41,6 +48,7 @@ static void printHeader(md3_header* h) {
 	printf("	flags: %i\n", h->flags);
 	printf("	num_frames: %i\n", h->num_frames);
 	printf("	num_tags: %i\n", h->num_tags);
+	printf("	num_surfaces: %i\n", h->num_surfaces);
 	printf("	num_skins: %i\n", h->num_skins);
 	printf("	ofs_frames: %i\n", h->ofs_frames);
 	printf("	ofs_tags: %i\n", h->ofs_tags);
@@ -62,4 +70,13 @@ static void printFrame(md3_frame* f) {
 	printf("sizeof(float): %lu\n", sizeof(float));
 }
 
+static void printTag(md3_tag* t) {
+	printf("md3_tag {\n");
+	printf("	name:%s\n", t->name);
+	printf("	origin: <%f,%f,%f>\n", t->origin.x, t->origin.y, t->origin.z);
+	printf("	axis:	[%9f, %9f, %9f\n", t->axis[0].x, t->axis[0].y, t->axis[0].z);
+	printf("	 	 %9f, %9f, %9f\n", t->axis[1].x, t->axis[1].y, t->axis[1].z);
+	printf("	 	 %9f, %9f, %9f]\n", t->axis[2].x, t->axis[2].y, t->axis[2].z);
+	printf("}\n");
+}
 #endif

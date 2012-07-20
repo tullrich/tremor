@@ -20,8 +20,9 @@ void MD3Reader::open(const char* filepath) {
 
 void MD3Reader::readMesh(MD3Mesh* mesh) {
 	
-	md3_header* header;
-	md3_frame* frames;
+	md3_header *header;
+	md3_frame *frames;
+	md3_tag *tags;
 
 	header = new md3_header;
 	if (!readHeader(header)) {
@@ -36,6 +37,37 @@ void MD3Reader::readMesh(MD3Mesh* mesh) {
 	}
 	mesh->frames = frames;
 
+	tags = new md3_tag[header->num_tags];
+	if(!readTags(header->num_tags, header->ofs_tags, tags)) {
+		return;
+	}
+	mesh->tags = tags;
+}
+
+bool MD3Reader::readTags(int num_tags, int ofs_tags, md3_tag* tags) {
+	printf("Reading %i tag%s...", num_tags, (num_tags != 1) ? "s": "");
+
+	if (!file_in.is_open()) {
+		printf("\nERROR: File is not open\n");
+		return false;
+	}
+
+	file_in.seekg(ofs_tags);
+
+	if (file_in.tellg() != ofs_tags) {
+		printf("\nERROR: could not reach tag offset\n");
+		return false;
+	}
+
+	file_in.read((char*)tags, sizeof(md3_tag) * num_tags);
+
+	if (checkError()) {
+		printf("\nERROR: could not read tags\n");
+		return false;
+	}
+
+	printf("done\n");
+	return true;
 }
 
 bool MD3Reader::readFrames(int num_frames, int ofs_frames, md3_frame* frames) {
@@ -56,7 +88,7 @@ bool MD3Reader::readFrames(int num_frames, int ofs_frames, md3_frame* frames) {
 	file_in.read((char*)frames, sizeof(md3_frame) * num_frames);
 
 	if (checkError()) {
-		printf("\nERROR: could not read header\n");
+		printf("\nERROR: could not read frames\n");
 		return false;
 	}
 
