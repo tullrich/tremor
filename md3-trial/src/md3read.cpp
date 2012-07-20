@@ -12,8 +12,11 @@ int main(int argc, char *argv[]) {
 	} else {
 		reader.open(FILE_PATH);
 	}
-	reader.readMesh(&mesh);
+	bool good_read = reader.readMesh(&mesh);
 	reader.close();
+
+	if (!good_read)
+		return -1;
 
 	printHeader(mesh.header);
 	printFrames(mesh.header->num_frames, mesh.frames);

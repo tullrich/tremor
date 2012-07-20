@@ -66,7 +66,7 @@ typedef struct {
 
 typedef struct {
 	float st[2];
-} md3_textcoord;
+} md3_texcoord;
 
 typedef struct {
 	short coord[3];
@@ -76,9 +76,15 @@ typedef struct {
 void printHeader(md3_header* h);
 void printFrame(md3_frame* f);
 void printTag(md3_tag* t);
-void printSurface(md3_surface* t);
+void printSurfheader(md3_surface* t);
+void printShader(md3_shader* shader);
+void printVertex(md3_vertex* v);
+void printTriangle(md3_triangle* t);
+void printTexCoord(md3_texcoord* st);
 void printFrames(int num_frames, md3_frame* f);
 void printTags(int num_tags, md3_tag* t);
-void printSurfaces(int num_surfaces, md3_surface* t);
-
+void printShaders(int num_shaders, md3_shader* shaders);
+void printVertices(int num_verts, md3_vertex* vertices);
+void printTriangles(int num_triangles, md3_triangle* triangles);
+void printTexCoords(int num_verts, md3_texcoord* sts);
 #endif

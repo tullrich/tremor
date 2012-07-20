@@ -1,5 +1,6 @@
 #include <cstdio>
 #include "md3_structs.h"
+#include "md3_surface.h"
 
 void printHeader(md3_header* h) {
 	printf("md3_header {\n");
@@ -38,20 +39,46 @@ void printTag(md3_tag* t) {
 	printf("}\n");
 }
 
-void printSurface(md3_surface* t) {
+void printSurfheader(md3_surface* sh) {
 	printf("md3_surface {\n");
-	printf("	ident: %i\n", t->ident);
-	printf("	name: %s\n", t->name);
-	printf("	flags: %i\n", t->flags);
-	printf("	num_frames: %i\n", t->num_frames);
-	printf("	num_shaders: %i\n", t->num_shaders);
-	printf("	num_verts: %i\n", t->num_verts);
-	printf("	num_triangles: %i\n", t->num_triangles);
-	printf("	ofs_triangles: %i\n", t->ofs_triangles);
-	printf("	ofs_shaders: %i\n", t->ofs_shaders);
-	printf("	ofs_st: %i\n", t->ofs_st);
-	printf("	ofs_xyznormal: %i\n", t->ofs_xyznormal);
-	printf("	ofs_end: %i\n", t->ofs_end);
+	printf("	ident: %i\n", sh->ident);
+	printf("	name: %s\n", sh->name);
+	printf("	flags: %i\n", sh->flags);
+	printf("	num_frames: %i\n", sh->num_frames);
+	printf("	num_shaders: %i\n", sh->num_shaders);
+	printf("	num_verts: %i\n", sh->num_verts);
+	printf("	num_triangles: %i\n", sh->num_triangles);
+	printf("	ofs_triangles: %i\n", sh->ofs_triangles);
+	printf("	ofs_shaders: %i\n", sh->ofs_shaders);
+	printf("	ofs_st: %i\n", sh->ofs_st);
+	printf("	ofs_xyznormal: %i\n", sh->ofs_xyznormal);
+	printf("	ofs_end: %i\n", sh->ofs_end);
+	printf("}\n");
+}
+
+void printShader(md3_shader* sh) {
+	printf("md3_shader {\n");
+	printf("	name: %s\n", sh->name);
+	printf("	shader_index: %i\n", sh->shader_index);
+	printf("}\n");
+}
+
+void printVertex(md3_vertex* v) {
+	printf("md3_vertex {\n");
+	printf("	coord: <%i, %i, %i>\n", v->coord[0], v->coord[1], v->coord[2]);
+	printf("	normal: <%u, %u>", v->normal[0], v->normal[1]);
+	printf("}\n");
+}
+
+void printTriangle(md3_triangle* t) {
+	printf("md3_triangle {\n");
+	printf("	indexes: [%i, %i, %i]\n", t->indexes[0], t->indexes[1], t->indexes[2]);
+	printf("}\n");
+}
+
+void printTexCoord(md3_texcoord* st) {
+	printf("md3_texcoord {\n");
+	printf("	indexes: {%f, %f}\n", st->st[0], st->st[1]);
 	printf("}\n");
 }
 
@@ -67,7 +94,42 @@ void printTags(int num_tags, md3_tag* tags) {
 	}
 }
 
-void printSurfaces(int num_surfaces, md3_surface* surfaces) {
+void printShaders(int num_shaders, md3_shader* shaders) {
+	for (int i = 0; i < num_shaders; i++) {		
+		printShader(&shaders[i]);
+	}
+}
+
+void printVertices(int num_verts, md3_vertex* vertices) {
+	for (int i = 0; i < num_verts; i++) {		
+		printVertex(&vertices[i]);
+	}
+}
+
+void printTriangles(int num_triangles, md3_triangle* triangles) {
+	for (int i = 0; i < num_triangles; i++) {		
+		printTriangle(&triangles[i]);
+	}
+}
+
+void printTexCoords(int num_verts, md3_texcoord* sts) {
+	for (int i = 0; i < num_verts; i++) {		
+		printTexCoord(&sts[i]);
+	}
+}
+
+void printSurface(MD3Surface* s) {
+	md3_surface *header = s->surf_header;
+	printf("MD3Surface {\n");
+		printSurfheader(header);
+		printShaders(header->num_shaders, s->shaders);
+		//printTriangles(header->num_triangles, s->triangles);
+		//printVertices(header->num_verts, s->xyznormals);
+		//printTexCoords(header->num_verts, s->sts);
+	printf("}\n");
+}
+
+void printSurfaces(int num_surfaces, MD3Surface* surfaces) {
 	for (int i = 0; i < num_surfaces; i++) {		
 		printSurface(&surfaces[i]);
 	}

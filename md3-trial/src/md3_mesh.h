@@ -1,14 +1,14 @@
 #ifndef _MD3_MESH_H
 #define _MD3_MESH_H
 #include "md3_structs.h"
-#include "md3_mesh.h"
+#include "md3_surface.h"
 
 class MD3Mesh {
 	public:
 		md3_header *header;
 		md3_frame *frames;
 		md3_tag *tags;
-		md3_surface *surfaces;
+		MD3Surface *surfaces;
 };
 
 #endif
