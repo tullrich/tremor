@@ -39,6 +39,39 @@ typedef struct {
 	vec3 axis[3];
 } md3_tag;
 
+typedef struct {
+	int ident;
+	char name[64];
+	int flags;
+	int num_frames;
+	int num_shaders;
+	int num_verts;
+	int num_triangles;
+	
+	int ofs_triangles;
+	int ofs_shaders;
+	int ofs_st;
+	int ofs_xyznormal;
+	int ofs_end;
+} md3_surface;
+
+typedef struct {
+	char name[64];
+	int shader_index;
+} md3_shader;
+
+typedef struct {
+	int indexes[3];
+} md3_triangle;
+
+typedef struct {
+	float st[2];
+} md3_textcoord;
+
+typedef struct {
+	short coord[3];
+	char normal[2];
+} md3_vertex;
 
 static void printHeader(md3_header* h) {
 	printf("md3_header {\n");
