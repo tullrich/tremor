@@ -2,6 +2,7 @@
 #include "md3read.h"
 #include "md3_reader.h"
 
+
 int main(int argc, char *argv[]) {
 	MD3Reader reader;
 	MD3Mesh mesh;
@@ -15,7 +16,9 @@ int main(int argc, char *argv[]) {
 	reader.close();
 
 	printHeader(mesh.header);
-	printFrame(&mesh.frames[0]);
-	printTag(&mesh.tags[0]);
+	printFrames(mesh.header->num_frames, mesh.frames);
+	printTags(mesh.header->num_tags, mesh.tags);
+	printSurfaces(mesh.header->num_surfaces, mesh.surfaces);
 }
+
 

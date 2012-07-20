@@ -8,6 +8,7 @@ class MD3Mesh {
 		md3_header *header;
 		md3_frame *frames;
 		md3_tag *tags;
+		md3_surface *surfaces;
 };
 
 #endif

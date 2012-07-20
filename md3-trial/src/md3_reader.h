@@ -8,16 +8,19 @@ class MD3Reader {
 	public:
 
 		void open(const char* filepath);
-		void readMesh(MD3Mesh* mesh);
+		bool readMesh(MD3Mesh* mesh);
 		bool readHeader(md3_header* header);
 		bool readFrames(int num_frames, int ofs_frames, md3_frame* frames);
 		bool readTags(int num_tags, int ofs_tags, md3_tag* tags);
+		bool readSurfaces(int num_surfaces, int ofs_surfaces, md3_surface* surfaces);
+		bool readSurface(int ofs_surface, md3_surface* surface);
 		void close();
 
 	private:
 		std::fstream file_in;
 
-		bool checkError();
+		bool _checkError();
+		bool _readSurface(int ofs_surface, md3_surface* surface);
 };
 
 #endif
