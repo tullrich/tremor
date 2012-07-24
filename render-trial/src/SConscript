@@ -1,0 +1,3 @@
+rendertrial = Program('rendertrial', Glob('*.cpp'),
+		LIBS = ['libSDL', 'pthread', 'dl'])
+Return('rendertrial')

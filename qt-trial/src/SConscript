@@ -1,2 +1,0 @@
-qttrial = Program('qttrial', Glob('*.cpp'))
-Return('qttrial')
