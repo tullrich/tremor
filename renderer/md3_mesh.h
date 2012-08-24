@@ -9,6 +9,10 @@ class MD3Mesh {
 		md3_frame *frames;
 		md3_tag *tags;
 		MD3Surface *surfaces;
+
+		int getNumSurfaces();
 };
+
+void printMesh(MD3Mesh *mesh);
 
 #endif

@@ -1,2 +1,0 @@
-rendertrial = SConscript(['src/SConscript'], variant_dir='bin');
-Return('rendertrial');

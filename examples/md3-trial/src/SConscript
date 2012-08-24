@@ -1,0 +1,7 @@
+Import('*')
+
+env = Environment(CPPPATH='#renderer')
+
+env.Program('md3read', Glob('*.cpp'),
+		LIBS=[renderer])
+

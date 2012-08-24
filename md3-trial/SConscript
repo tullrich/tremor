@@ -1,2 +1,0 @@
-md3read = SConscript(['src/SConscript'], variant_dir='bin');
-Return('md3read')

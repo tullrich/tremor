@@ -9,9 +9,13 @@ class MD3Surface {
 		md3_triangle *triangles;
 		md3_texcoord *sts;
 		md3_vertex *xyznormals;
+
+		int getNumTriangles();
+		int getNumVertices();
 };
 
 void printSurface(MD3Surface* t);
 void printSurfaces(int num_surfaces, MD3Surface* t);
+void printSurfacePrimatives(MD3Surface* s);
 
 #endif

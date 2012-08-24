@@ -1,0 +1,2 @@
+renderer = Library('renderer', Glob('*.cpp'))
+Return('renderer')

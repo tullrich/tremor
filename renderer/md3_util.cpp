@@ -1,6 +1,7 @@
 #include <cstdio>
 #include "md3_structs.h"
 #include "md3_surface.h"
+#include "md3_mesh.h"
 
 void printHeader(md3_header* h) {
 	printf("md3_header {\n");
@@ -123,14 +124,29 @@ void printSurface(MD3Surface* s) {
 	printf("MD3Surface {\n");
 		printSurfheader(header);
 		printShaders(header->num_shaders, s->shaders);
-		//printTriangles(header->num_triangles, s->triangles);
-		//printVertices(header->num_verts, s->xyznormals);
-		//printTexCoords(header->num_verts, s->sts);
+	printf("}\n");
+}
+
+void printSurfacePrimatives(MD3Surface* s) {
+	md3_surface *header = s->surf_header;
+	printf("MD3Surface {\n");
+		printSurfheader(header);
+		printShaders(header->num_shaders, s->shaders);
+		printTriangles(header->num_triangles, s->triangles);
+		printVertices(header->num_verts, s->xyznormals);
+		printTexCoords(header->num_verts, s->sts);
 	printf("}\n");
 }
 
 void printSurfaces(int num_surfaces, MD3Surface* surfaces) {
 	for (int i = 0; i < num_surfaces; i++) {		
-		printSurface(&surfaces[i]);
+		printSurfacePrimatives(&surfaces[i]);
 	}
+}
+
+void printMesh(MD3Mesh *mesh) {
+	printHeader(mesh->header);
+	printFrames(mesh->header->num_frames, mesh->frames);
+	printTags(mesh->header->num_tags, mesh->tags);
+	printSurfaces(mesh->header->num_surfaces, mesh->surfaces);
 }
