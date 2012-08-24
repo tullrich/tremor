@@ -1,0 +1,3 @@
+Hobby project that hopes to reimplement the rendering engine behind Quake 3 (you can find the source code right here on github).
+
+Currently supports very basic .md3 (non-animated) rendering.
