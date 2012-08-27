@@ -6,7 +6,7 @@ env = Environment(CPPFLAGS="-g ",
 # non-portable hack to force the use of the static version =(
 # I'm starting to dislike scons now
 # check http://old.nabble.com/How-to-force-the-use-of-a-static-library-when-the-dynamic-library-is-available-as-well-td20476343.html
-static_jpeg_lib = env.File('/usr/local/lib/libjpeg.a')
+static_jpeg_lib = env.File('/usr/lib/libjpeg.a')
 
 env.Program('rendertrial', Glob('*.cpp'),
-		LIBS = ['libSDL', 'pthread', 'dl', 'GL', 'GLEW', renderer, static_jpeg_lib])
+		LIBS = ['libSDL', 'pthread', 'dl', 'GL', 'GLU', renderer, "jpeg"])
