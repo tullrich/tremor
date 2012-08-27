@@ -52,7 +52,7 @@ int main(int argc, char **argv)
 	};
 
 	tImage *img;
-	JPEGReader::readJPEG((char*)SHOTGUN_FILEPATH, img);
+	//JPEGReader::readJPEG((char*)SHOTGUN_FILEPATH, img);
 
 	//MD3Entity entities[2] = {
 	//	MD3Entity(&entity1), MD3Entity(&entity2)

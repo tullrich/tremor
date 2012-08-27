@@ -58,10 +58,10 @@ void TrialRenderer::onRender() {
 
 	//printf("eyeX %f, eyeY %f, eyeZ %f, centerX %f, centerY %f, centerZ %f, upX %f, upY %f, upZ %f\n", eyeX , eyeY , eyeZ , centerX , centerY , centerZ , upX , upY , upZ);
 
-	/*for (int i = 0; i < num_entities; i++) {
+	for (int i = 0; i < num_entities; i++) {
 		//printf("onRender calling object %i\n", i);
 		e[i].onDraw();
-	}*/
+	}
 
    //glEnable(GL_TEXTURE_2D);
    //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
@@ -84,7 +84,7 @@ void TrialRenderer::onRender() {
 void TrialRenderer::onInit() {
 	SDL_WM_SetCaption( "Trial Renderer", 0 );
 
-	glEnable( GL_TEXTURE_2D );
+	//glEnable( GL_TEXTURE_2D );
 	glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
  
 	glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
@@ -97,14 +97,15 @@ void TrialRenderer::onInit() {
 	glLoadIdentity();
 	 
 	//glOrtho(0.0f, 640, 480, 0.0f, -1000.0f, 1000.0f);
-	gluPerspective(90, 640/480, -10, 100);
+	gluPerspective(90, 640/480, .1, 10000);
 
 	glMatrixMode( GL_MODELVIEW );
 	glLoadIdentity();
 
-	glGenTextures(1, &texname);
+	/*glGenTextures(1, &texname);
 	glBindTexture(GL_TEXTURE_2D, texname);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img->width, 
                 img->height, 0, GL_RGB, GL_UNSIGNED_BYTE, 
                 img->pixels);
+	*/
 }

@@ -78,14 +78,14 @@ void MD3Entity::drawElements(int index) {
 void MD3Entity::drawSurface(int index) {
 	MD3Surface *s = &model->surfaces[index];
 
-	glEnable( GL_TEXTURE_2D );
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	//glEnable( GL_TEXTURE_2D );
+	//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	glTexCoordPointer( 2, GL_FLOAT, 0, s->sts );
+	//glTexCoordPointer( 2, GL_FLOAT, 0, s->sts );
 	drawElements(index);
 
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glEnable( GL_TEXTURE_2D );
+	//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	//glEnable( GL_TEXTURE_2D );
 
 }
 
