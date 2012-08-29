@@ -20,9 +20,14 @@ bool readInMesh(MD3Mesh *mesh, char* filepath) {
 	return good_read;
 }
 
+bool readJPEG(tImage *img) {
+	JPEGReader jr((char*)SHOTGUN_FILEPATH);
+	return jr.readJPEG(img);
+}
+
 int main(int argc, char **argv)
 {
-	char* filepath;
+	char* filepath; 
 	if (argc > 1) {
 		filepath = argv[1];
 	} else {
@@ -33,7 +38,6 @@ int main(int argc, char **argv)
 		printf("[0] Bad mesh read aborting renderer\n");
 		return -1;
 	}
-	printMesh(&meshes[0]);
 
 	if (!readInMesh(&meshes[1], (char*)FILE_PATH2)) {
 		printf("[1] Bad mesh read aborting renderer\n");
@@ -52,7 +56,10 @@ int main(int argc, char **argv)
 	};
 
 	tImage *img;
-	//JPEGReader::readJPEG((char*)SHOTGUN_FILEPATH, img);
+	if (!readJPEG(img)) {
+		printf("[1] Bad jpeg read aborting renderer\n");
+		return -1;
+	}
 
 	//MD3Entity entities[2] = {
 	//	MD3Entity(&entity1), MD3Entity(&entity2)
